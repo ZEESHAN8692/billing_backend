@@ -2,6 +2,10 @@ import express from "express";
 import connectDB from "./app/config/database.js";
 import cors from "cors";
 import router from "./app/routes/Athentication/authenticationRoutes.js";
+import inviceRoutes from "./app/routes/invoiceRoutes.js";
+import productRoutes from "./app/routes/productRoutes.js";
+import customerRoutes from "./app/routes/customerRoutes.js";
+import purchaseRoutes from "./app/routes/purchaseRoutes.js";
 
 const app = express();
 // Database
@@ -20,6 +24,11 @@ app.get("/", (req, res) => {
   res.send("Hello World!");
 });
 app.use("/api", router);
+app.use("/api", inviceRoutes);
+app.use("/api", productRoutes);
+app.use("/api", customerRoutes);
+app.use("/api", purchaseRoutes);
+
 // Server
 const port = process.env.PORT || 9090;
 app.listen(port, () => {
