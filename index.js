@@ -1,6 +1,7 @@
 import express from "express";
 import connectDB from "./app/config/database.js";
 import cors from "cors";
+import router from "./app/routes/Athentication/authenticationRoutes.js";
 
 const app = express();
 // Database
@@ -14,10 +15,11 @@ app.use(express.static("public"));
 app.use("/uploads", express.static("uploads"));
 
 // Routes
+
 app.get("/", (req, res) => {
   res.send("Hello World!");
 });
-
+app.use("/api", router);
 // Server
 const port = process.env.PORT || 9090;
 app.listen(port, () => {

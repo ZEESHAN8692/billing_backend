@@ -11,8 +11,8 @@ const authenticationSchema = new mongoose.Schema({
     unique: true,
   },
   password: {
-    type: [String, "password is required"],
-    required: true,
+    type: String,
+    required: [true, "Password is required"],
   },
   image: {
     type: String,
@@ -21,6 +21,10 @@ const authenticationSchema = new mongoose.Schema({
     type: String,
     enum: ["accountant", "admin"],
     default: "accountant",
+  },
+  isVerified: {
+    type: Boolean,
+    default: true,
   },
   createAt: {
     type: Date,
