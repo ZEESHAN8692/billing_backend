@@ -32,7 +32,7 @@ class ProductController {
       res.json({
         status: true,
         message: "Products fetched successfully",
-        products,
+        data: products,
       });
     } catch (error) {
       res
