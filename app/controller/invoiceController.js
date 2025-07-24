@@ -26,6 +26,7 @@ class InvoiceController {
       }
 
       const invoice = new Invoice({
+        invoiceId: `IN${String(Date.now()).slice(-6)}`,
         customer,
         products,
         totalAmount,
@@ -35,7 +36,9 @@ class InvoiceController {
 
       await invoice.save();
 
-      res.status(201).json({ success: true, invoice });
+      res
+        .status(201)
+        .json({ success: true, message: "Invoice created", data: invoice });
     } catch (error) {
       res
         .status(500)
@@ -50,7 +53,11 @@ class InvoiceController {
         .populate("products.product", "name price")
         .sort({ invoiceDate: -1 });
 
-      res.json({ success: true, invoices });
+      res.json({
+        success: true,
+        message: "Invoices fetched successfully",
+        data: invoices,
+      });
     } catch (error) {
       res
         .status(500)
@@ -70,7 +77,11 @@ class InvoiceController {
           .json({ success: false, message: "Invoice not found" });
       }
 
-      res.json({ success: true, invoice });
+      res.json({
+        success: true,
+        message: "Invoice fetched successfully",
+        data: invoice,
+      });
     } catch (error) {
       res
         .status(500)

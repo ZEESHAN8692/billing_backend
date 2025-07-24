@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
 
 const invoiceSchema = new mongoose.Schema({
+  invoiceId: { type: String, required: true },
   customer: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "Customer",
