@@ -13,6 +13,6 @@ router.post(
 );
 router.post("/login", AuthenticationController.login);
 router.get("/profile-details", AuthCheck, AuthenticationController.profile);
-router.get("/users", AuthenticationController.users);
-router.get("/user/:id", AuthenticationController.singleUser);
+router.get("/users", AuthCheck, AuthenticationController.users);
+router.get("/user/:id", AuthCheck, AuthenticationController.singleUser);
 export default router;
